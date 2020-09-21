@@ -1,0 +1,22 @@
+{
+  "name": "canvasman",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anminam/canvasman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anminam/canvasman/issues"
+  },
+  "homepage": "https://github.com/anminam/canvasman#readme",
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  }
+}
