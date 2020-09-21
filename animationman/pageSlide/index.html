@@ -29,34 +29,43 @@
     <script>
         document.querySelector('.pages').addEventListener('click', (e) => {
             const pages = e.currentTarget;
-            if (pages.classList.contains('ani-ing')) {
-                return;
-            }
-            pages.classList.add('ani-ing');
-            const leavePage = e.target.closest('.page');
-
             const button = e.target.closest('.button');
 
-            if (button) {
-                leavePage.classList.add('leave-page');
-                const nextPage = pages.querySelector('.page:not(.leave-page)');
-                nextPage.classList.remove('disable');
-                nextPage.classList.add('next-page');
-                nextPage.classList.add('next-page-enter');
+            const NEXT_PAGE = 'next-page';
+            const LEAVE_PAGE = 'leave-page';
 
-                setTimeout(() => {
-                    nextPage.classList.remove('next-page-enter');
-                }, 0);
-
-                // 끝나면
-                setTimeout(() => {
-                    nextPage.classList.remove('next-page');
-                    leavePage.classList.add('disable');
-                    leavePage.classList.remove('leave-page');
-                    pages.classList.remove('ani-ing');
-
-                }, 600)
+            // 버튼 없으면 리턴
+            if (!button) {
+                return;
             }
+
+            // 페이지가 애니메이션 중이여도 리턴
+            if (pages.querySelector(`.${NEXT_PAGE}`)) {
+                return;
+            }
+
+            // 현재페이지
+            const leavePage = e.target.closest('.page');
+            leavePage.classList.add(LEAVE_PAGE);
+
+            // 다음 나올 페이지
+            const nextPage = pages.querySelector(`.page:not(.${LEAVE_PAGE})`);
+            nextPage.classList.remove('disable');
+            nextPage.classList.add(NEXT_PAGE);
+            nextPage.classList.add('next-page-enter');
+
+            // 페이지 슬라이드 트리거
+            setTimeout(() => {
+                nextPage.classList.remove('next-page-enter');
+            }, 0);
+
+            // 끝나면 에니메이션용 클래스 삭제 및 disable 추가
+            setTimeout(() => {
+                nextPage.classList.remove(NEXT_PAGE);
+                leavePage.classList.add('disable');
+                leavePage.classList.remove(LEAVE_PAGE);
+
+            }, 700);
 
         })
     </script>
