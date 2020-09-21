@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="pages">
+        <div class="page page0">
+            <button class="button">
+                <span class="button__title">
+                    Next Page
+                </span>
+            </button>
+        </div>
+        <div class="page page1 disable">
+            <button class="button">
+                <span class="button__title">
+                    Prev Page
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.pages').addEventListener('click', (e) => {
+            const pages = e.currentTarget;
+            const leavePage = e.target.closest('.page');
+
+            const button = e.target.closest('.button');
+
+            if (button) {
+                leavePage.classList.add('leave-page');
+                const nextPage = pages.querySelector('.page:not(.leave-page)');
+                nextPage.classList.remove('disable');
+                nextPage.classList.add('next-page');
+                nextPage.classList.add('next-page-enter');
+
+                setTimeout(() => {
+                    nextPage.classList.remove('next-page-enter');
+                }, 0);
+
+                // 끝나면
+                setTimeout(() => {
+                    nextPage.classList.remove('next-page');
+                    leavePage.classList.add('disable');
+                    leavePage.classList.remove('leave-page');
+
+                }, 1000)
+            }
+
+        })
+    </script>
+
+
+
+</body>
+
+</html>
