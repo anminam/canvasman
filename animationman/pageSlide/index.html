@@ -29,6 +29,10 @@
     <script>
         document.querySelector('.pages').addEventListener('click', (e) => {
             const pages = e.currentTarget;
+            if (pages.classList.contains('ani-ing')) {
+                return;
+            }
+            pages.classList.add('ani-ing');
             const leavePage = e.target.closest('.page');
 
             const button = e.target.closest('.button');
@@ -49,8 +53,9 @@
                     nextPage.classList.remove('next-page');
                     leavePage.classList.add('disable');
                     leavePage.classList.remove('leave-page');
+                    pages.classList.remove('ani-ing');
 
-                }, 1000)
+                }, 600)
             }
 
         })
